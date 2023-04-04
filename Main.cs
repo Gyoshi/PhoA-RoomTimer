@@ -38,6 +38,8 @@ namespace RoomTimer
         }
         static bool Unload(UnityModManager.ModEntry modEntry)
         {
+            AccessTools.Method(typeof(GameBoardLogic), "_TimerDismissComplete").Invoke(PT2.game_board, new object[] { });
+
             harmony.UnpatchAll(modEntry.Info.Id);
 
             return true;
