@@ -1,0 +1,10 @@
+﻿{
+  "Id": "RoomTimer",
+  "DisplayName": "Room Timer",
+  "Author": "Gyoshi",
+  "Version": "0.0.0",
+  "GameVersion": "1.3.3",
+  "AssemblyName": "RoomTimer.dll",
+  "EntryMethod": "RoomTimer.Main.Load",
+  "HomePage": "https://github.com/Gyoshi/PhoA-RoomTimer"
+}
