@@ -2,7 +2,7 @@
   "Id": "RoomTimer",
   "DisplayName": "Room Timer",
   "Author": "Gyoshi",
-  "Version": "0.0.1",
+  "Version": "0.0.2",
   "GameVersion": "1.3.3",
   "AssemblyName": "RoomTimer.dll",
   "EntryMethod": "RoomTimer.Main.Load",
