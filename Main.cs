@@ -30,10 +30,7 @@ namespace RoomTimer
             harmony = new Harmony(modEntry.Info.Id);
             harmony.PatchAll();
 
-            FieldInfo timerActiveField = AccessTools.Field(typeof(GameBoardLogic), "_timer_is_active");
-            timerActiveField.SetValue(PT2.game_board, true);
-            PT2.game_board.timer_transform.localPosition = timerPosition;
-            //PT2.game_board.timer_transform.localScale = 0.8f*Vector3.one;
+            ActivateTimer();
 
         }
         static bool Unload(UnityModManager.ModEntry modEntry)
@@ -68,6 +65,14 @@ namespace RoomTimer
         //    int frames = (PT2.director.global_timer - Main.roomLoadTime + 59) % 60 + 1;
         //    PT2.item_gen.DisplayNumber(PT2.gale_script.GetTransform().position, frames, DamageNumberLogic.DISPLAY_STYLE.GROW_AND_FADE, null);
         //}
+
+        public static void ActivateTimer()
+        {
+            FieldInfo timerActiveField = AccessTools.Field(typeof(GameBoardLogic), "_timer_is_active");
+            timerActiveField.SetValue(PT2.game_board, true);
+            PT2.game_board.timer_transform.localPosition = timerPosition;
+            //PT2.game_board.timer_transform.localScale = 0.8f*Vector3.one;
+        }
 
 
     }
@@ -104,6 +109,15 @@ namespace RoomTimer
         public static bool Prefix()
         {
             return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(PT2), "LoadLevel")]
+    public static class LoadLevel_Patch
+    {
+        public static void Postfix()
+        {
+            Main.ActivateTimer();
         }
     }
 }
